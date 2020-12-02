@@ -7,23 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4526C2982576B65200B6CD3E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4526C2952576B65200B6CD3E /* Shaders.metal */; };
+		4526C2992576B65200B6CD3E /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4526C2952576B65200B6CD3E /* Shaders.metal */; };
+		4526C29A2576B65200B6CD3E /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526C2972576B65200B6CD3E /* Renderer.swift */; };
+		4526C29B2576B65200B6CD3E /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4526C2972576B65200B6CD3E /* Renderer.swift */; };
+		457DB95C2578146E000936E6 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB95B2578146E000936E6 /* Matrix.swift */; };
+		457DB95D2578146E000936E6 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB95B2578146E000936E6 /* Matrix.swift */; };
+		457DB9612578160D000936E6 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB9602578160D000936E6 /* Camera.swift */; };
+		457DB9622578160D000936E6 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457DB9602578160D000936E6 /* Camera.swift */; };
+		45ADC8E325770178009FABBB /* bunny.off in Resources */ = {isa = PBXBuildFile; fileRef = 45ADC8E225770178009FABBB /* bunny.off */; };
+		45ADC8E425770178009FABBB /* bunny.off in Resources */ = {isa = PBXBuildFile; fileRef = 45ADC8E225770178009FABBB /* bunny.off */; };
+		45ADC8E8257701D0009FABBB /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADC8E7257701D0009FABBB /* Mesh.swift */; };
+		45ADC8E9257701D0009FABBB /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADC8E7257701D0009FABBB /* Mesh.swift */; };
 		45E2EF632576B43900793A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF622576B43900793A05 /* AppDelegate.swift */; };
 		45E2EF652576B43900793A05 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF642576B43900793A05 /* SceneDelegate.swift */; };
-		45E2EF672576B43900793A05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF662576B43900793A05 /* ViewController.swift */; };
 		45E2EF6A2576B43900793A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E2EF682576B43900793A05 /* Main.storyboard */; };
 		45E2EF6C2576B43B00793A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E2EF6B2576B43B00793A05 /* Assets.xcassets */; };
 		45E2EF6F2576B43B00793A05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E2EF6D2576B43B00793A05 /* LaunchScreen.storyboard */; };
+		45E2EF7E2576B44F00793A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF7D2576B44F00793A05 /* AppDelegate.swift */; };
+		45E2EF822576B45000793A05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E2EF812576B45000793A05 /* Assets.xcassets */; };
+		45E2EF852576B45000793A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E2EF832576B45000793A05 /* Main.storyboard */; };
+		45E2EF922576B4E700793A05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF912576B4E700793A05 /* ViewController.swift */; };
+		45E2EF932576B4E700793A05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E2EF912576B4E700793A05 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		45E2EF5F2576B43900793A05 /* RasterizationWithMetal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RasterizationWithMetal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4526C2952576B65200B6CD3E /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		4526C2962576B65200B6CD3E /* ShaderTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
+		4526C2972576B65200B6CD3E /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		4526C29E2576B66400B6CD3E /* RasterizationWithMetal-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RasterizationWithMetal-Bridging-Header.h"; sourceTree = "<group>"; };
+		4526C29F2576B66400B6CD3E /* RasterizationWithMetal-mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RasterizationWithMetal-mac-Bridging-Header.h"; sourceTree = "<group>"; };
+		457DB95B2578146E000936E6 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		457DB9602578160D000936E6 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		45ADC8E225770178009FABBB /* bunny.off */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bunny.off; sourceTree = "<group>"; };
+		45ADC8E7257701D0009FABBB /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		45E2EF5F2576B43900793A05 /* RasterizationWithMetal-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RasterizationWithMetal-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E2EF622576B43900793A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45E2EF642576B43900793A05 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		45E2EF662576B43900793A05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45E2EF692576B43900793A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45E2EF6B2576B43B00793A05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45E2EF6E2576B43B00793A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45E2EF702576B43B00793A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45E2EF7B2576B44F00793A05 /* RasterizationWithMetal-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RasterizationWithMetal-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45E2EF7D2576B44F00793A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		45E2EF812576B45000793A05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		45E2EF842576B45000793A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		45E2EF862576B45000793A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45E2EF872576B45000793A05 /* RasterizationWithMetal_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RasterizationWithMetal_mac.entitlements; sourceTree = "<group>"; };
+		45E2EF912576B4E700793A05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,45 +65,83 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		45E2EF782576B44F00793A05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4526C2942576B65200B6CD3E /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				45ADC8E7257701D0009FABBB /* Mesh.swift */,
+				4526C2972576B65200B6CD3E /* Renderer.swift */,
+				4526C2962576B65200B6CD3E /* ShaderTypes.h */,
+				4526C2952576B65200B6CD3E /* Shaders.metal */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		45E2EF562576B43900793A05 = {
 			isa = PBXGroup;
 			children = (
-				45E2EF612576B43900793A05 /* RasterizationWithMetal */,
+				45E2EF912576B4E700793A05 /* ViewController.swift */,
+				457DB95B2578146E000936E6 /* Matrix.swift */,
+				457DB9602578160D000936E6 /* Camera.swift */,
+				45ADC8E225770178009FABBB /* bunny.off */,
+				4526C2942576B65200B6CD3E /* Renderer */,
+				45E2EF612576B43900793A05 /* RasterizationWithMetal-iOS */,
+				45E2EF7C2576B44F00793A05 /* RasterizationWithMetal-mac */,
 				45E2EF602576B43900793A05 /* Products */,
+				4526C29E2576B66400B6CD3E /* RasterizationWithMetal-Bridging-Header.h */,
+				4526C29F2576B66400B6CD3E /* RasterizationWithMetal-mac-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
 		45E2EF602576B43900793A05 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45E2EF5F2576B43900793A05 /* RasterizationWithMetal.app */,
+				45E2EF5F2576B43900793A05 /* RasterizationWithMetal-iOS.app */,
+				45E2EF7B2576B44F00793A05 /* RasterizationWithMetal-mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		45E2EF612576B43900793A05 /* RasterizationWithMetal */ = {
+		45E2EF612576B43900793A05 /* RasterizationWithMetal-iOS */ = {
 			isa = PBXGroup;
 			children = (
 				45E2EF622576B43900793A05 /* AppDelegate.swift */,
 				45E2EF642576B43900793A05 /* SceneDelegate.swift */,
-				45E2EF662576B43900793A05 /* ViewController.swift */,
 				45E2EF682576B43900793A05 /* Main.storyboard */,
 				45E2EF6B2576B43B00793A05 /* Assets.xcassets */,
 				45E2EF6D2576B43B00793A05 /* LaunchScreen.storyboard */,
 				45E2EF702576B43B00793A05 /* Info.plist */,
 			);
-			path = RasterizationWithMetal;
+			path = "RasterizationWithMetal-iOS";
+			sourceTree = "<group>";
+		};
+		45E2EF7C2576B44F00793A05 /* RasterizationWithMetal-mac */ = {
+			isa = PBXGroup;
+			children = (
+				45E2EF7D2576B44F00793A05 /* AppDelegate.swift */,
+				45E2EF812576B45000793A05 /* Assets.xcassets */,
+				45E2EF832576B45000793A05 /* Main.storyboard */,
+				45E2EF862576B45000793A05 /* Info.plist */,
+				45E2EF872576B45000793A05 /* RasterizationWithMetal_mac.entitlements */,
+			);
+			path = "RasterizationWithMetal-mac";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		45E2EF5E2576B43900793A05 /* RasterizationWithMetal */ = {
+		45E2EF5E2576B43900793A05 /* RasterizationWithMetal-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45E2EF732576B43B00793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal" */;
+			buildConfigurationList = 45E2EF732576B43B00793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal-iOS" */;
 			buildPhases = (
 				45E2EF5B2576B43900793A05 /* Sources */,
 				45E2EF5C2576B43900793A05 /* Frameworks */,
@@ -82,9 +151,26 @@
 			);
 			dependencies = (
 			);
-			name = RasterizationWithMetal;
+			name = "RasterizationWithMetal-iOS";
 			productName = RasterizationWithMetal;
-			productReference = 45E2EF5F2576B43900793A05 /* RasterizationWithMetal.app */;
+			productReference = 45E2EF5F2576B43900793A05 /* RasterizationWithMetal-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		45E2EF7A2576B44F00793A05 /* RasterizationWithMetal-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45E2EF882576B45000793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal-mac" */;
+			buildPhases = (
+				45E2EF772576B44F00793A05 /* Sources */,
+				45E2EF782576B44F00793A05 /* Frameworks */,
+				45E2EF792576B44F00793A05 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RasterizationWithMetal-mac";
+			productName = "RasterizationWithMetal-mac";
+			productReference = 45E2EF7B2576B44F00793A05 /* RasterizationWithMetal-mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,6 +184,11 @@
 				TargetAttributes = {
 					45E2EF5E2576B43900793A05 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
+					};
+					45E2EF7A2576B44F00793A05 = {
+						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -114,7 +205,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				45E2EF5E2576B43900793A05 /* RasterizationWithMetal */,
+				45E2EF5E2576B43900793A05 /* RasterizationWithMetal-iOS */,
+				45E2EF7A2576B44F00793A05 /* RasterizationWithMetal-mac */,
 			);
 		};
 /* End PBXProject section */
@@ -126,7 +218,18 @@
 			files = (
 				45E2EF6F2576B43B00793A05 /* LaunchScreen.storyboard in Resources */,
 				45E2EF6C2576B43B00793A05 /* Assets.xcassets in Resources */,
+				45ADC8E325770178009FABBB /* bunny.off in Resources */,
 				45E2EF6A2576B43900793A05 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45E2EF792576B44F00793A05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45E2EF822576B45000793A05 /* Assets.xcassets in Resources */,
+				45E2EF852576B45000793A05 /* Main.storyboard in Resources */,
+				45ADC8E425770178009FABBB /* bunny.off in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +240,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45E2EF672576B43900793A05 /* ViewController.swift in Sources */,
+				457DB9612578160D000936E6 /* Camera.swift in Sources */,
+				457DB95C2578146E000936E6 /* Matrix.swift in Sources */,
+				45ADC8E8257701D0009FABBB /* Mesh.swift in Sources */,
+				4526C2982576B65200B6CD3E /* Shaders.metal in Sources */,
+				45E2EF922576B4E700793A05 /* ViewController.swift in Sources */,
 				45E2EF632576B43900793A05 /* AppDelegate.swift in Sources */,
+				4526C29A2576B65200B6CD3E /* Renderer.swift in Sources */,
 				45E2EF652576B43900793A05 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45E2EF772576B44F00793A05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4526C29B2576B65200B6CD3E /* Renderer.swift in Sources */,
+				4526C2992576B65200B6CD3E /* Shaders.metal in Sources */,
+				457DB95D2578146E000936E6 /* Matrix.swift in Sources */,
+				45E2EF932576B4E700793A05 /* ViewController.swift in Sources */,
+				45E2EF7E2576B44F00793A05 /* AppDelegate.swift in Sources */,
+				457DB9622578160D000936E6 /* Camera.swift in Sources */,
+				45ADC8E9257701D0009FABBB /* Mesh.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +282,14 @@
 				45E2EF6E2576B43B00793A05 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		45E2EF832576B45000793A05 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45E2EF842576B45000793A05 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -286,15 +416,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKDDBDT3DQ;
-				INFOPLIST_FILE = RasterizationWithMetal/Info.plist;
+				INFOPLIST_FILE = "RasterizationWithMetal-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cl.RasterizationWithMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RasterizationWithMetal-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -305,17 +438,70 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKDDBDT3DQ;
-				INFOPLIST_FILE = RasterizationWithMetal/Info.plist;
+				INFOPLIST_FILE = "RasterizationWithMetal-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cl.RasterizationWithMetal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RasterizationWithMetal-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		45E2EF892576B45000793A05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "RasterizationWithMetal-mac/RasterizationWithMetal_mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = CKDDBDT3DQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "RasterizationWithMetal-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "cl.RasterizationWithMetal-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "RasterizationWithMetal-mac-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		45E2EF8A2576B45000793A05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "RasterizationWithMetal-mac/RasterizationWithMetal_mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = CKDDBDT3DQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "RasterizationWithMetal-mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "cl.RasterizationWithMetal-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "RasterizationWithMetal-mac-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -331,11 +517,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45E2EF732576B43B00793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal" */ = {
+		45E2EF732576B43B00793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45E2EF742576B43B00793A05 /* Debug */,
 				45E2EF752576B43B00793A05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45E2EF882576B45000793A05 /* Build configuration list for PBXNativeTarget "RasterizationWithMetal-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				45E2EF892576B45000793A05 /* Debug */,
+				45E2EF8A2576B45000793A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
