@@ -27,3 +27,13 @@ func makeScaleMatrix(scaleX:Float, scaleY: Float, scaleZ: Float) -> matrix_float
     ]
     return matrix_float4x4(rows: rows)
 }
+
+func makeRotateAlongYAxisMatrix(alpha: Float) -> matrix_float4x4 {
+    let rows = [
+        simd_float4(cos(alpha), 0, -sin(alpha), 0),
+        simd_float4(0, 1, 0, 0),
+        simd_float4(sin(alpha), 0, cos(alpha), 0),
+        simd_float4(0, 0, 0, 1),
+    ]
+    return matrix_float4x4(rows: rows)
+}

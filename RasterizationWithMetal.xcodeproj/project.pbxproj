@@ -78,6 +78,8 @@
 		4526C2942576B65200B6CD3E /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				457DB95B2578146E000936E6 /* Matrix.swift */,
+				457DB9602578160D000936E6 /* Camera.swift */,
 				45ADC8E7257701D0009FABBB /* Mesh.swift */,
 				4526C2972576B65200B6CD3E /* Renderer.swift */,
 				4526C2962576B65200B6CD3E /* ShaderTypes.h */,
@@ -90,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				45E2EF912576B4E700793A05 /* ViewController.swift */,
-				457DB95B2578146E000936E6 /* Matrix.swift */,
-				457DB9602578160D000936E6 /* Camera.swift */,
 				45ADC8E225770178009FABBB /* bunny.off */,
 				4526C2942576B65200B6CD3E /* Renderer */,
 				45E2EF612576B43900793A05 /* RasterizationWithMetal-iOS */,

@@ -18,25 +18,63 @@ struct RasterizerData
 };
 
 vertex RasterizerData
-vertexShader(uint vertexID [[vertex_id]],
+wireFrameShaderTriangle(uint vertexID [[vertex_id]],
              constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],
-             constant vector_uint2 *viewportSizePointer [[buffer(VertexInputIndexViewportSize)]],
              constant Uniform *uniform [[buffer(VertexInputIndexUniform)]])
 {
     RasterizerData out;
+    out.position = uniform->cameraMatrix * uniform->modelMatrix * vertices[vertexID].position;
+    out.color = float4(1, 1, 1, 1);
+    return out;
+}
+
+vertex RasterizerData
+wireFrameShaderBackLine(uint vertexID [[vertex_id]],
+             constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],
+                        constant Uniform *uniform [[buffer(VertexInputIndexUniform)]]) {
+    RasterizerData out;
+    out.position = uniform->cameraMatrix * uniform->modelMatrix * vertices[vertexID].position;
+    out.position[2] -= 0.001 * out.position[3];
+    out.color = float4(0, 0.5, 0.5, 1);
+    return out;
+}
+
+vertex RasterizerData
+wireFrameShaderFrontLine(uint vertexID [[vertex_id]],
+             constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],
+                        constant Uniform *uniform [[buffer(VertexInputIndexUniform)]]) {
+    RasterizerData out;
+    out.position = uniform->cameraMatrix * uniform->modelMatrix * vertices[vertexID].position;
+    out.position[2] -= 0.001 * out.position[3];
+    out.color = float4(0, 0, 0, 1);
+    return out;
+}
+
+vertex RasterizerData
+vertexShader(uint vertexID [[vertex_id]],
+             constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],
+             constant Uniform *uniform [[buffer(VertexInputIndexUniform)]])
+{
+    RasterizerData out;
+//    out.position = uniform->cameraMatrix * uniform->modelMatrix * vertices[vertexID].position;
+    float4 position = uniform->modelMatrix * vertices[vertexID].position;
+    float color = uniform->ambient;
+    float4 v = normalize(float4(uniform->cameraPosition, 1) - position);
+    float4 n = normalize(uniform->modelMatrixInverseTranspose * vertices[vertexID].normal);
     
-    float2 pixelSpacePosition = vertices[vertexID].position.xy;
-    
-    vector_float2 viewportSize = vector_float2(*viewportSizePointer);
-    
-    out.position = vertices[vertexID].position;
-//    out.position = vector_float4(0.0, 0.0, 0.0, 1.0);
-//    out.position.xy = pixelSpacePosition / (viewportSize / 2.0);
-//    out.position.z = vertices[vertexID].position.z;
-//    out.position = uniform->orthodoxMatrix * uniform->projectionMatrix * out.position;
-    
-    out.color = vertices[vertexID].color;
-    
+    assert(dot(n, v) >= 0);
+    if (dot(n, v) < 0) {
+        n = -n;
+    }
+    assert(dot(n, v) >= 0);
+    float4 d = float4(uniform->lightPosition, 1) - position;
+    float4 l = normalize(d);
+    float diffuse = uniform->diffuse * max(dot(l, n), 0.0);
+    float4 h = normalize(l + v);
+    float specular = uniform->specular * pow(max(dot(h, n), 0.0), uniform->specular_exponent);
+    color += (diffuse + specular) * uniform->lightIntensity / length_squared(d);
+    out.color = float4(min(color, 1.0));
+    out.position = uniform->cameraMatrix * position;
     return out;
 }
 

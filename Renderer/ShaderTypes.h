@@ -12,19 +12,25 @@
 
 typedef enum VertexInputIndex {
     VertexInputIndexVertices     = 0,
-    VertexInputIndexViewportSize = 1,
-    VertexInputIndexUniform = 2,
+    VertexInputIndexUniform = 1,
 } VertexInputIndex;
 
 typedef struct {
     vector_float4 position;
-    vector_float4 color;
     vector_float4 normal;
 } Vertex;
 
 typedef struct {
-    matrix_float4x4 projectionMatrix;
-    matrix_float4x4 orthodoxMatrix;
+    matrix_float4x4 modelMatrix;
+    matrix_float4x4 modelMatrixInverseTranspose;
+    matrix_float4x4 cameraMatrix;
+    vector_float3 cameraPosition;
+    vector_float3 lightPosition;
+    float lightIntensity;
+    float ambient;
+    float diffuse;
+    float specular;
+    float specular_exponent;
 } Uniform;
 
 #endif /* ShaderTypes_h */

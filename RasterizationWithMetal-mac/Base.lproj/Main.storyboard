@@ -706,13 +706,82 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="RasterizationWithMetal_mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="MTKView">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="613" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0F-lu-cL1">
+                                <rect key="frame" x="210" y="317" width="193" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Vp8-aG-kbC">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Wireframe"/>
+                                        <segment label="Flat" selected="YES" tag="1"/>
+                                        <segment label="Per-Vertex"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="shadingControlAction:" target="XfG-lQ-9wD" id="fTR-2f-C1h"/>
+                                </connections>
+                            </segmentedControl>
+                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="bx1-fQ-acq">
+                                <rect key="frame" x="553" y="316" width="42" height="25"/>
+                                <connections>
+                                    <action selector="perspectiveSwitched:" target="XfG-lQ-9wD" id="r7z-A8-OGb"/>
+                                </connections>
+                            </switch>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4tE-ix-sX9">
+                                <rect key="frame" x="473" y="321" width="76" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Perspective" id="biI-1y-gNR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l9d-dD-SgC">
+                                <rect key="frame" x="18" y="321" width="65" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Animation" id="es4-ga-eKA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="Vns-WC-myN">
+                                <rect key="frame" x="87" y="316" width="42" height="25"/>
+                                <connections>
+                                    <action selector="animationSwitched:" target="XfG-lQ-9wD" id="Kad-mu-NCW"/>
+                                </connections>
+                            </switch>
+                            <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-nZ-91g">
+                                <rect key="frame" x="18" y="41" width="24" height="274"/>
+                                <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="qD6-0N-kgd"/>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="4tE-ix-sX9" firstAttribute="centerY" secondItem="N0F-lu-cL1" secondAttribute="centerY" id="6S1-eH-xXU"/>
+                            <constraint firstItem="GdH-nZ-91g" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="6jO-bg-cLa"/>
+                            <constraint firstItem="l9d-dD-SgC" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="7pI-d6-F0g"/>
+                            <constraint firstItem="bx1-fQ-acq" firstAttribute="leading" secondItem="4tE-ix-sX9" secondAttribute="trailing" constant="8" symbolic="YES" id="A31-D7-PCy"/>
+                            <constraint firstItem="GdH-nZ-91g" firstAttribute="top" secondItem="l9d-dD-SgC" secondAttribute="bottom" constant="8" symbolic="YES" id="BAr-Fn-uZU"/>
+                            <constraint firstItem="N0F-lu-cL1" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="D25-xW-Tex"/>
+                            <constraint firstItem="GdH-nZ-91g" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="LOb-51-T8w"/>
+                            <constraint firstItem="bx1-fQ-acq" firstAttribute="centerY" secondItem="N0F-lu-cL1" secondAttribute="centerY" id="OVl-qm-7F1"/>
+                            <constraint firstAttribute="trailing" secondItem="bx1-fQ-acq" secondAttribute="trailing" constant="20" symbolic="YES" id="T20-tR-wNo"/>
+                            <constraint firstItem="l9d-dD-SgC" firstAttribute="centerY" secondItem="N0F-lu-cL1" secondAttribute="centerY" id="dEO-3s-GJ1"/>
+                            <constraint firstItem="Vns-WC-myN" firstAttribute="leading" secondItem="l9d-dD-SgC" secondAttribute="trailing" constant="8" symbolic="YES" id="e5x-4k-cSX"/>
+                            <constraint firstItem="N0F-lu-cL1" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="jFB-Mf-b9P"/>
+                            <constraint firstItem="Vns-WC-myN" firstAttribute="centerY" secondItem="N0F-lu-cL1" secondAttribute="centerY" id="tCl-5X-Yjx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="animationSwitch" destination="Vns-WC-myN" id="0Jh-7c-Yyn"/>
+                        <outlet property="fovSlider" destination="GdH-nZ-91g" id="WgJ-sw-wpP"/>
+                        <outlet property="perspectiveSwitch" destination="bx1-fQ-acq" id="emG-uz-0qF"/>
+                        <outlet property="shadingControl" destination="N0F-lu-cL1" id="g1u-05-kEq"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="141.5" y="700"/>
         </scene>
     </scenes>
 </document>
