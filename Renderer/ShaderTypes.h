@@ -15,9 +15,15 @@ typedef enum VertexInputIndex {
     VertexInputIndexUniform = 1,
 } VertexInputIndex;
 
+typedef enum TextureIndex
+{
+    TextureIndexBaseColor = 0,
+} TextureIndex;
+
 typedef struct {
     vector_float4 position;
     vector_float4 normal;
+    vector_float2 textureCoordinate;
 } Vertex;
 
 typedef struct {

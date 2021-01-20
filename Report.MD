@@ -1,3 +1,0 @@
-Rasterization With Metal
-=================
-

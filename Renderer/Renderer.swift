@@ -13,6 +13,7 @@ enum ShadingType: Int {
     case wireFrame = 0
     case flat
     case pervertex
+    case texture
 }
 
 class Renderer: NSObject, MTKViewDelegate {
@@ -22,11 +23,14 @@ class Renderer: NSObject, MTKViewDelegate {
     var device: MTLDevice
     var commandQueue: MTLCommandQueue
     var linePipelineState: MTLRenderPipelineState
-    var whiteTrianglePipelineState: MTLRenderPipelineState
     var trianglePipelineState: MTLRenderPipelineState
+    var texturePipelineState: MTLRenderPipelineState
+    
     var viewPortSize: SIMD2<UInt32>
+    var texture: MTLTexture?
     
     var lessDepthState: MTLDepthStencilState
+    var defaultModelMatrix: matrix_float4x4
     
     // just line, no normal
     var lineBuffer: MTLBuffer
@@ -46,11 +50,28 @@ class Renderer: NSObject, MTKViewDelegate {
     var animation: Bool
     let animationMatrix: [matrix_float4x4]
     
-    init?(with mtkView: MTKView, mesh: Mesh) {
+    init?(with mtkView: MTKView, mesh: Mesh, textureURL: URL?) {
         if let device = mtkView.device {
             self.device = device
             self.mesh = mesh
-
+            
+            let loader = MTKTextureLoader.init(device: device)
+            if textureURL == nil {
+                self.texture = nil
+            } else {
+                self.texture = try? loader.newTexture(URL: textureURL!, options: nil)
+            }
+//            do {
+//                if textureURL != nil {
+//                    let texture = try loader.newTexture(URL: textureURL!, options: nil)
+//                    self.texture = texture
+//                } else {
+//                    self.texture = nil
+//                }
+//            } catch {
+//                return nil
+//            }
+            
             guard let lineBuffer = device.makeBuffer(length: MemoryLayout<Vertex>.size * mesh.lines.count,
                                                       options: .storageModeShared) else {
                 return nil
@@ -102,26 +123,15 @@ class Renderer: NSObject, MTKViewDelegate {
                 return nil
             }
             
-//            let backLinePipelineStateDescriptor = MTLRenderPipelineDescriptor.init()
-//            backLinePipelineStateDescriptor.label = "back line pipeline"
-//            backLinePipelineStateDescriptor.vertexFunction = defaultLibrary.makeFunction(name: "wireFrameShaderBackLine")
-//            backLinePipelineStateDescriptor.fragmentFunction = fragmentFunction
-//            backLinePipelineStateDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
-//            backLinePipelineStateDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
-//            do {
-//                try self.backLinePipelineState = device.makeRenderPipelineState(descriptor: backLinePipelineStateDescriptor)
-//            } catch {
-//                return nil
-//            }
-            
-            let whiteTrianglePipelineDescriptor = MTLRenderPipelineDescriptor.init()
-            whiteTrianglePipelineDescriptor.label = "white triangle pipeline"
-            whiteTrianglePipelineDescriptor.vertexFunction = defaultLibrary.makeFunction(name: "wireFrameShaderTriangle")
-            whiteTrianglePipelineDescriptor.fragmentFunction = fragmentFunction
-            whiteTrianglePipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
-            whiteTrianglePipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
+            // texturePipelineState
+            let texturePipelineDescriptor = MTLRenderPipelineDescriptor.init()
+            texturePipelineDescriptor.label = "texture pipeline"
+            texturePipelineDescriptor.vertexFunction = defaultLibrary.makeFunction(name: "textureShaderTriangle")
+            texturePipelineDescriptor.fragmentFunction = defaultLibrary.makeFunction(name: "textureFragmentShader")
+            texturePipelineDescriptor.colorAttachments[0].pixelFormat = mtkView.colorPixelFormat
+            texturePipelineDescriptor.depthAttachmentPixelFormat = mtkView.depthStencilPixelFormat
             do {
-                try self.whiteTrianglePipelineState = device.makeRenderPipelineState(descriptor: whiteTrianglePipelineDescriptor)
+                try self.texturePipelineState = device.makeRenderPipelineState(descriptor: texturePipelineDescriptor)
             } catch {
                 return nil
             }
@@ -138,23 +148,26 @@ class Renderer: NSObject, MTKViewDelegate {
             self.commandQueue = device.makeCommandQueue()!
             self.viewPortSize = SIMD2<UInt32>()
             
-            let near: Float = 0.32
-            let fieldOfView = atan((mesh.max.y - mesh.min.y)/2/near) * 2.2
-            self.camera = Camera.init(position: simd_float3(0, 0, 2.4),
-                                      gazeDirection: simd_float3(0, 0, -1),
+            let near: Float = 0.35
+            let far: Float = 5
+            let position = simd_float3(0, 0, 3)
+            let fieldOfView: Float = atan((mesh.max.y - mesh.min.y) / 2 / near) * 2.1
+            
+            self.camera = Camera.init(position: position,
                                       upDirection: simd_float3(0, 1, 0),
                                       fieldOfView: fieldOfView,
                                       aspectRatio: Float(self.viewPortSize.x) / Float(self.viewPortSize.y),
                                       near: near,
-                                      far: 3,
+                                      far: far,
                                       perspective: false)
             self.animationFrame = 0
             
+            self.defaultModelMatrix = makeRotateAlongYAxisMatrix(alpha: Float.pi * 2 / 3) * makeTranslateMatrix(tx: -mesh.midpoint[0], ty: -mesh.midpoint[1], tz: -mesh.midpoint[2])
             
             self.uniform = Uniform.init()
             self.uniform.cameraMatrix = camera.worldToCanonical
             self.uniform.cameraPosition = camera.position
-            self.uniform.modelMatrix = makeTranslateMatrix(tx: -mesh.midpoint[0], ty: -mesh.midpoint[1], tz: -mesh.midpoint[2])
+            self.uniform.modelMatrix = defaultModelMatrix
             self.uniform.modelMatrixInverseTranspose = simd_transpose(self.uniform.modelMatrix.inverse)
             self.uniform.lightPosition = vector_float3(2, 0, 4);
             self.uniform.lightIntensity = 16
@@ -166,12 +179,13 @@ class Renderer: NSObject, MTKViewDelegate {
             self.shadingType = .flat
             
             self.animation = false
+            let ratio: Float = 0.6
             self.animationMatrix = Array(0..<480).map({ (time:Int) -> matrix_float4x4 in
                 if time < 240 {
-                    let translation = makeTranslateMatrix(tx: 0, ty: 0, tz: Float(time) / 120)
+                    let translation = makeTranslateMatrix(tx: position[0] * ratio * Float(time) / 240, ty: position[1] * ratio * Float(time) / 240, tz: position[2] * ratio * Float(time) / 240)
                     return translation * makeRotateAlongYAxisMatrix(alpha: Float.pi / 120 * Float(time))
                 } else {
-                    let translation = makeTranslateMatrix(tx: 0, ty: 0, tz: Float(480 - time) / 120)
+                    let translation = makeTranslateMatrix(tx: position[0] * ratio * Float(480 - time) / 240, ty: position[1] * ratio * Float(480 - time) / 240, tz: position[2] * ratio * Float(480 - time) / 240)
                     return translation * makeRotateAlongYAxisMatrix(alpha: Float.pi / 120 * Float(time))
                 }
             })
@@ -182,6 +196,11 @@ class Renderer: NSObject, MTKViewDelegate {
     }
     
     func setPerspective(perspective: Bool) {
+        if perspective {
+            self.camera.setPerspective(persepctive: perspective, fov: atan((mesh.max.y - mesh.min.y) / 2 / self.camera.near) * 1)
+        } else {
+            self.camera.setPerspective(persepctive: perspective, fov: atan((mesh.max.y - mesh.min.y) / 2 / self.camera.near) * 2.1)
+        }
         self.camera.perspective = perspective
         self.uniform.cameraMatrix = self.camera.worldToCanonical
     }
@@ -292,15 +311,49 @@ class Renderer: NSObject, MTKViewDelegate {
         }
     }
     
+    func texture(in view: MTKView) {
+        guard let texture = self.texture else {
+            return pervertex(in: view)
+        }
+        if let renderPassDescriptor = view.currentRenderPassDescriptor {
+            let commandBuffer = self.commandQueue.makeCommandBuffer()
+            commandBuffer?.label = "texture command"
+            
+            if let renderEncoder = commandBuffer!.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {
+                renderEncoder.label = "texture Render Encoder"
+                renderEncoder.setViewport(MTLViewport.init(originX: 0.0,
+                                                           originY: 0.0,
+                                                           width: Double(self.viewPortSize.x),
+                                                           height: Double(self.viewPortSize.y),
+                                                           znear: 0.0,
+                                                           zfar: 1.0))
+                renderEncoder.setRenderPipelineState(self.texturePipelineState)
+                renderEncoder.setDepthStencilState(self.lessDepthState)
+                renderEncoder.setVertexBuffer(self.triangleBuffer, offset: 0, index: 0)
+                renderEncoder.setVertexBytes(&uniform,
+                                             length: MemoryLayout<Uniform>.size,
+                                             index: Int(VertexInputIndexUniform.rawValue))
+                renderEncoder.setFragmentTexture(texture,
+                                                 index: Int(TextureIndexBaseColor.rawValue))
+                renderEncoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: self.mesh.trianglesPerVertex.count)
+                renderEncoder.endEncoding()
+            }
+            
+            commandBuffer?.present(view.currentDrawable!)
+            commandBuffer?.commit()
+        }
+    }
+    
     func draw(in view: MTKView) {
         if self.animation {
-            self.uniform.modelMatrix = self.animationMatrix[self.animationFrame] * makeTranslateMatrix(tx: -mesh.midpoint[0], ty: -mesh.midpoint[1], tz: -mesh.midpoint[2])
+            self.uniform.modelMatrix = self.animationMatrix[self.animationFrame] * self.defaultModelMatrix
             self.uniform.modelMatrixInverseTranspose = simd_transpose(self.uniform.modelMatrix.inverse)
             self.animationFrame = (self.animationFrame + 1) % self.animationMatrix.count
         } else {
-            self.uniform.modelMatrix = makeTranslateMatrix(tx: -mesh.midpoint[0], ty: -mesh.midpoint[1], tz: -mesh.midpoint[2])
+            self.uniform.modelMatrix = self.defaultModelMatrix
             self.uniform.modelMatrixInverseTranspose = simd_transpose(self.uniform.modelMatrix.inverse)
         }
+        
         switch self.shadingType {
         case .flat:
             flatshading(in: view)
@@ -308,6 +361,8 @@ class Renderer: NSObject, MTKViewDelegate {
             wireframe(in: view)
         case .pervertex:
             pervertex(in: view)
+        case .texture:
+            texture(in: view)
         }
     }
 }

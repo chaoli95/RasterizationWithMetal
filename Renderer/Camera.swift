@@ -26,33 +26,19 @@ class Camera {
             self.right = top * aspectRatio
             self.canonical = makeScaleMatrix(scaleX: 1 / right, scaleY: 1 / top, scaleZ: 1 / (far - near)) * makeTranslateMatrix(tx: 0, ty: 0, tz: -near)
             self.worldToCanonical = self.canonical * self.perspectiveMatrix * self.worldToCamera
-      
         }
     }
     
-    var perspective: Bool {
-        didSet {
-            if perspective {
-                self.perspectiveMatrix = matrix_float4x4(vector_float4(near, 0, 0, 0),
-                                                         vector_float4(0, near, 0, 0),
-                                                         vector_float4(0, 0, (near + far), 1),
-                                                         vector_float4(0, 0, -near*far, 0))
-            } else {
-                self.perspectiveMatrix = matrix_float4x4(1)
-            }
-            self.worldToCanonical = self.canonical * self.perspectiveMatrix * self.worldToCamera
-   
-        }
-    }
+    var perspective: Bool
     
     var worldToCamera: matrix_float4x4
     var perspectiveMatrix: matrix_float4x4
     var canonical: matrix_float4x4
     var worldToCanonical: matrix_float4x4
     
-    init(position: simd_float3, gazeDirection: simd_float3, upDirection: simd_float3, fieldOfView: Float, aspectRatio: Float, near: Float, far: Float, perspective: Bool) {
+    init(position: simd_float3, upDirection: simd_float3, fieldOfView: Float, aspectRatio: Float, near: Float, far: Float, perspective: Bool) {
         self.position = position
-        self.w = simd.normalize(gazeDirection)
+        self.w = simd.normalize(-position)
         self.v = simd.normalize(upDirection)
         self.u = simd_cross(w, v)
         
@@ -82,6 +68,22 @@ class Camera {
         self.canonical = makeScaleMatrix(scaleX: 1 / right, scaleY: 1 / top, scaleZ: 1 / (far - near)) * makeTranslateMatrix(tx: 0, ty: 0, tz: -near)
         
         self.worldToCanonical = self.canonical * self.perspectiveMatrix * self.worldToCamera
-
+    }
+    
+    func setPerspective(persepctive: Bool, fov: Float) {
+        self.fieldOfView = fov
+        self.perspective = persepctive
+        if perspective {
+            self.perspectiveMatrix = matrix_float4x4(vector_float4(near, 0, 0, 0),
+                                                     vector_float4(0, near, 0, 0),
+                                                     vector_float4(0, 0, (near + far), 1),
+                                                     vector_float4(0, 0, -near * far, 0))
+        } else {
+            self.perspectiveMatrix = matrix_float4x4(1)
+        }
+        self.top = near * tan(fov / 2)
+        self.right = self.top * self.aspectRatio
+        self.canonical = makeScaleMatrix(scaleX: 1 / right, scaleY: 1 / top, scaleZ: 1 / (far - near)) * makeTranslateMatrix(tx: 0, ty: 0, tz: -near)
+        self.worldToCanonical = self.canonical * self.perspectiveMatrix * self.worldToCamera
     }
 }

@@ -15,6 +15,7 @@ struct RasterizerData
 {
     float4 position [[position]];
     float4 color [[center_perspective]];
+    float2 textureCoordinate [[center_perspective]];
 };
 
 vertex RasterizerData
@@ -81,4 +82,25 @@ vertexShader(uint vertexID [[vertex_id]],
 fragment float4 fragmentShader(RasterizerData in [[stage_in]])
 {
     return in.color;
+}
+
+vertex RasterizerData
+textureShaderTriangle(uint vertexID [[vertex_id]],
+             constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],
+             constant Uniform *uniform [[buffer(VertexInputIndexUniform)]])
+{
+    RasterizerData out;
+    out.position = uniform->cameraMatrix * uniform->modelMatrix * vertices[vertexID].position;
+    out.textureCoordinate = vertices[vertexID].textureCoordinate;
+    return out;
+}
+
+fragment float4 textureFragmentShader(RasterizerData in [[stage_in]],
+                                      texture2d<half> colorTexture [[ texture(TextureIndexBaseColor) ]])
+{
+    constexpr sampler textureSampler (mag_filter::linear,
+                                      min_filter::linear);
+    
+    const half4 colorSample = colorTexture.sample(textureSampler, in.textureCoordinate);
+    return float4(colorSample);
 }
