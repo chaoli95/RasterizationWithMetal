@@ -2,14 +2,16 @@ Rasterization With Metal
 =================
 
 1. Three Different Shading + Texture Mapping
-The following results are exported from Metal debugging tool. Here's the results is in orthographic view:
+The following results are exported from Metal debugging tool. 
 
-shader type | image
-- | -
-wireframe | ![](img/wireframe_o.png)
-flatshading | ![](img/flat_o.png)
-per-vertex shading | ![](img/pervertex_o.png)
-texture mapping | ![](img/texture_o.png)
+Here's the results is in orthographic view:
+
+|shader type | image|
+|- | -|
+|wireframe | ![](img/wireframe_o.png)|
+|flatshading | ![](img/flat_o.png)|
+|per-vertex shading | ![](img/pervertex_o.png)|
+|texture mapping | ![](img/texture_o.png)|
 
 2. Perspective View
 
