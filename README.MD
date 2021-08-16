@@ -20,7 +20,7 @@ The following results are produced by screen recording tool.
 
 | type | wireframe | flatshading | per-vertex shading | texture mapping |
 | - | - | - | - | - |
-|image| ![](img/wireframe.png) |![](img/flat.gif) |![](img/pervertex.gif) |![](img/texture.gif) |
+|image| ![](img/wireframe.gif) |![](img/flat.gif) |![](img/pervertex.gif) |![](img/texture.gif) |
 
 References
 -----------
