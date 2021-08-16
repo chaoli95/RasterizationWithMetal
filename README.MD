@@ -1,36 +1,26 @@
 Rasterization With Metal
 =================
 
-1. Three Different Shading + Texture Mapping
 The following results are exported from Metal debugging tool. 
 
-Here's the results is in orthographic view:
+1. Orthographic View
 
-|shader type | image|
-|- | -|
-|wireframe | ![](img/wireframe_o.png)|
-|flatshading | ![](img/flat_o.png)|
-|per-vertex shading | ![](img/pervertex_o.png)|
-|texture mapping | ![](img/texture_o.png)|
+| type | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | wireframe | flatshading | per-vertex shading | texture mapping |
+|image| ![](img/wireframe_o.png) |![](img/flat_o.png) |![](img/pervertex_o.png) |![](img/texture_o.png) |
 
 2. Perspective View
 
-shader type | image
-- | -
-wireframe | ![](img/wireframe_p.png)
-flatshading | ![](img/flat_p.png)
-per-vertex shading | ![](img/pervertex_p.png)
-texture mapping | ![](img/texture_p.png)
+| type | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | wireframe | flatshading | per-vertex shading | texture mapping |
+|image| ![](img/wireframe_p.png) |![](img/flat_p.png) |![](img/pervertex_p.png) |![](img/texture_p.png) |
 
 3. Object Transformation
-The following results are produced by screen recording tool. The actual annimation is much smoother.
+The following results are produced by screen recording tool. 
 
-shader type | image
-- | -
-wireframe | ![](img/wireframe.gif)
-flatshading | ![](img/flat.gif)
-per-vertex shading | ![](img/pervertex.gif)
-texture mapping | ![](img/texture.gif)
+| type | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | wireframe | flatshading | per-vertex shading | texture mapping |
+|image| ![](img/wireframe.png) |![](img/flat.gif) |![](img/pervertex.gif) |![](img/texture.gif) |
 
 References
 -----------
