@@ -6,20 +6,20 @@ The following results are exported from Metal debugging tool.
 1. Orthographic View
 
 | type | wireframe | flatshading | per-vertex shading | texture mapping |
-| - | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | - | - | - | - |
 |image| ![](img/wireframe_o.png) |![](img/flat_o.png) |![](img/pervertex_o.png) |![](img/texture_o.png) |
 
 2. Perspective View
 
 | type | wireframe | flatshading | per-vertex shading | texture mapping |
-| - | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | - | - | - | - |
 |image| ![](img/wireframe_p.png) |![](img/flat_p.png) |![](img/pervertex_p.png) |![](img/texture_p.png) |
 
 3. Object Transformation
 The following results are produced by screen recording tool. 
 
 | type | wireframe | flatshading | per-vertex shading | texture mapping |
-| - | wireframe | flatshading | per-vertex shading | texture mapping |
+| - | - | - | - | - |
 |image| ![](img/wireframe.png) |![](img/flat.gif) |![](img/pervertex.gif) |![](img/texture.gif) |
 
 References
